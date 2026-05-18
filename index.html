@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Convite para Grupo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --green: #00a884;
+    --green-dark: #008069;
+    --green-light: #25d366;
+    --green-glow: rgba(37,211,102,0.18);
+    --bg: #111b21;
+    --bg2: #202c33;
+    --bg3: #2a3942;
+    --surface: #1f2c34;
+    --border: #2a3942;
+    --text: #e9edef;
+    --text-muted: #8696a0;
+    --red: #f15c6d;
+    --red-bg: rgba(241,92,109,0.10);
+    --yellow: #ffd740;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 14px;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-icon {
+    width: 36px; height: 36px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .topbar-icon svg { width: 22px; height: 22px; fill: #fff; }
+  .topbar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── BACKGROUND PATTERN ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 56px 0 0 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l8.485 8.485-1.414 1.414L34.343 0h3.313zM22.344 0L13.858 8.485l1.415 1.414L25.657 0h-3.313zM32 0l9.9 9.9-1.415 1.414L30 1.414 19.515 11.314 18.1 9.9 28 0h4zM.284 0l28 28-1.414 1.414L0 2.544v-2.26L.284 0zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.97 7.07 49.384l-7.07-7.07v-2.657zm0 5.657l5.657 5.657-1.414 1.415L0 46.143v-2.83zm0 5.657l2.828 2.83-1.414 1.413L0 51.8v-2.143zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.657 0L30 46.686 16.686 60h2.83L30 49.515 40.484 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V.284l-.284-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656l-19.8 19.8 1.415 1.413L60 19.514v-2.83zm0 5.657l-16.97 16.97 1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.97l1.414 1.413 7.07-7.07v-2.657zm0 5.657l-5.657 5.657 1.414 1.415L60 46.143v-2.83zm0 5.657l-2.828 2.83 1.414 1.413L60 51.8v-2.143z' fill='%2300a884' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── MAIN CARD ── */
+  .wrapper {
+    position: fixed;
+    inset: 56px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    z-index: 1;
+  }
+
+  .card {
+    background: var(--surface);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 40px rgba(0,0,0,0.5),
+      0 0 0 1px var(--border);
+    animation: cardIn .4s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(18px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── GROUP BANNER ── */
+  .group-banner {
+    background: linear-gradient(160deg, var(--bg2) 0%, var(--bg3) 100%);
+    padding: 32px 24px 24px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .group-avatar {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    background: var(--green-dark);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--border);
+  }
+  .group-avatar svg { width: 52px; height: 52px; fill: rgba(255,255,255,0.9); }
+
+  .group-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.01em;
+  }
+  .group-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ── BODY ── */
+  .card-body {
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  /* LOADING STATE */
+  .state { display: none; }
+  .state.active { display: block; animation: fadeIn .35s ease both; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .loading-ring {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+  .loading-ring svg {
+    width: 56px; height: 56px;
+    animation: spin 1.2s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .loading-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* progress bar */
+  .progress-wrap {
+    height: 3px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+    border-radius: 99px;
+    width: 0%;
+    transition: width 1s linear;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  /* DOTS */
+  .dots {
+    display: flex; gap: 6px; justify-content: center; margin-bottom: 22px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: dotPulse 1.4s ease-in-out infinite;
+  }
+  .dot:nth-child(2) { animation-delay: .2s; }
+  .dot:nth-child(3) { animation-delay: .4s; }
+  @keyframes dotPulse {
+    0%,80%,100% { opacity: .25; transform: scale(.8); }
+    40%         { opacity: 1;   transform: scale(1); }
+  }
+
+  /* ERROR STATE */
+  .error-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--red-bg);
+    margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    animation: errorPop .5s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes errorPop {
+    from { opacity: 0; transform: scale(.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .error-icon svg { width: 30px; height: 30px; }
+
+  .error-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .error-code {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 18px;
+    text-align: left;
+    line-height: 1.7;
+  }
+  .error-msg {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  /* RETRY BUTTON */
+  .btn-retry {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 26px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-retry:hover { background: var(--green); transform: translateY(-1px); }
+  .btn-retry:active { transform: translateY(0); }
+  .btn-retry svg { width: 16px; height: 16px; fill: #fff; }
+
+  /* ── FOOTER ── */
+  .card-footer {
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+  }
+  .footer-lock { flex-shrink: 0; }
+  .footer-lock svg { width: 16px; height: 16px; fill: var(--green); display: block; }
+  .footer-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .footer-text span { color: var(--green); font-weight: 600; }
+
+  /* RESPONSIVE */
+  @media (max-width: 420px) {
+    .card { border-radius: 12px; }
+    .group-avatar { width: 76px; height: 76px; }
+    .group-avatar svg { width: 44px; height: 44px; }
+    .group-name { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-icon">
+    <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/><path d="M20.52 3.449C12.831-3.984.521 1.671.521 11.999c0 2.054.549 4.035 1.594 5.791L.05 24l6.396-1.995c1.731.943 3.617 1.44 5.534 1.44 9.341 0 15.286-10.24 10.54-21.996zm-8.52 18.021c-1.747 0-3.464-.47-4.971-1.355l-.357-.209-3.795 1.181 1.254-3.674-.225-.374a9.86 9.86 0 0 1-1.516-5.26c0-5.445 4.436-9.884 9.879-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.892 6.993c-.003 5.45-4.437 9.884-9.149 9.884z"/></svg>
+  </div>
+  <div class="topbar-title">WhatsApp</div>
+</div>
+
+<!-- CARD -->
+<div class="wrapper">
+  <div class="card">
+
+    <!-- GROUP BANNER -->
+    <div class="group-banner">
+      <div class="group-avatar">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <div class="group-name">🔒 Grupo Privado</div>
+      <div class="group-meta">Grupo · Link de convite</div>
+    </div>
+
+    <!-- CARD BODY -->
+    <div class="card-body">
+
+      <!-- LOADING STATE -->
+      <div class="state active" id="stateLoading">
+        <div class="loading-ring">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="24" stroke="#2a3942" stroke-width="4"/>
+            <path d="M28 4 A24 24 0 0 1 52 28" stroke="#00a884" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="loading-title">Entrando no grupo…</div>
+        <div class="loading-sub" id="loadingSubText">Verificando seu link de convite e conectando ao servidor. Aguarde.</div>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-label" id="progressLabel">0%</div>
+      </div>
+
+      <!-- ERROR STATE -->
+      <div class="state" id="stateError">
+        <div class="error-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#f15c6d" stroke-width="2"/>
+            <path d="M12 7v5" stroke="#f15c6d" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="12" cy="16.5" r="1.25" fill="#f15c6d"/>
+          </svg>
+        </div>
+        <div class="error-title" id="errorTitle">Falha na conexão</div>
+        <div class="error-code" id="errorCode"></div>
+        <div class="error-msg" id="errorMsg"></div>
+        <button class="btn-retry" onclick="retryInvite()">
+          <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4C7.58 4 4 7.58 4 12s3.58 8 8 8a7.985 7.985 0 0 0 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+          Tentar novamente
+        </button>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="card-footer">
+      <div class="footer-lock">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      </div>
+      <div class="footer-text">Suas mensagens pessoais são <span>criptografadas de ponta a ponta</span></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── ERROR LIBRARY ──────────────────────────────────────────
+  const errors = [
+    {
+      title: "Erro de rede",
+      code: "ERR_NETWORK_CHANGED\nStatus: 503 Service Unavailable\nTimeout: 180000ms exceeded",
+      msg: "Não foi possível alcançar os servidores do WhatsApp. Sua conexão pode ter sido interrompida. Verifique sua internet e tente novamente."
+    },
+    {
+      title: "Tempo de solicitação esgotado",
+      code: "ERR_CONNECTION_TIMED_OUT\nStatus: 408 Request Timeout\nServer: edge-node-wa-01.net",
+      msg: "O servidor demorou muito para responder. Isso pode ocorrer devido a alto tráfego ou sinal fraco. Tente novamente."
+    },
+    {
+      title: "Falha no handshake SSL",
+      code: "ERR_SSL_PROTOCOL_ERROR\nStatus: 525 SSL Handshake Failed\nCert: wa.me certificate mismatch",
+      msg: "Não foi possível estabelecer uma conexão segura. Sua rede pode estar bloqueando tráfego criptografado."
+    },
+    {
+      title: "Falha na resolução DNS",
+      code: "ERR_NAME_NOT_RESOLVED\nHost: invite.whatsapp.com\nDNS: No record found (NXDOMAIN)",
+      msg: "O servidor de convite não pôde ser encontrado. A resolução DNS falhou — tente usar dados móveis ou outro Wi-Fi."
+    },
+    {
+      title: "Tempo limite do gateway",
+      code: "ERR_GATEWAY_TIMEOUT\nStatus: 504 Gateway Timeout\nProxy: wa-gateway-ng.prod",
+      msg: "Um servidor gateway não respondeu a tempo. O serviço pode estar temporariamente indisponível. Tente novamente em instantes."
+    },
+    {
+      title: "Conexão recusada",
+      code: "ERR_CONNECTION_REFUSED\nStatus: 0 (No Response)\nSocket: ECONNREFUSED 3.236.1.12:443",
+      msg: "A conexão foi recusada pelo host remoto. Configurações de firewall ou proxy podem estar bloqueando o acesso."
+    },
+    {
+      title: "Servidor inacessível",
+      code: "ERR_ADDRESS_UNREACHABLE\nStatus: — (ICMP unreachable)\nHop limit exceeded after 30 nodes",
+      msg: "Os servidores do WhatsApp não podem ser alcançados pela sua rede atual. Tente desativar a VPN ou trocar de conexão."
+    },
+  ];
+
+  // ── STATE ──────────────────────────────────────────────────
+  let attemptCount = 0;
+  const LOAD_DURATION = 3 * 60 * 1000; // 3 minutes in ms
+  let progressInterval = null;
+  let errorTimeout = null;
+
+  const stateLoading = document.getElementById('stateLoading');
+  const stateError   = document.getElementById('stateError');
+  const progressBar  = document.getElementById('progressBar');
+  const progressLabel= document.getElementById('progressLabel');
+  const errorTitle   = document.getElementById('errorTitle');
+  const errorCode    = document.getElementById('errorCode');
+  const errorMsg     = document.getElementById('errorMsg');
+  const loadingSubText = document.getElementById('loadingSubText');
+
+  const loadingMessages = [
+    "Verificando seu link de convite e conectando ao servidor. Aguarde.",
+    "Autenticando sua sessão com os servidores do WhatsApp…",
+    "Verificando permissões do grupo e validade do convite…",
+    "Estabelecendo uma conexão segura com o servidor do grupo…",
+    "Sincronizando metadados do grupo e lista de membros…",
+    "Validando token de convite com o servidor regional…",
+  ];
+
+  function showLoading() {
+    stateError.classList.remove('active');
+    stateLoading.classList.add('active');
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '0%';
+    progressLabel.textContent = '0%';
+
+    // Rotate loading sub-text
+    loadingSubText.textContent = loadingMessages[attemptCount % loadingMessages.length];
+
+    // Start progress bar
+    let elapsed = 0;
+    const TICK = 1000;
+    progressInterval = setInterval(() => {
+      elapsed += TICK;
+      const pct = Math.min(Math.floor((elapsed / LOAD_DURATION) * 100), 99);
+      progressBar.style.transition = 'width 1s linear';
+      progressBar.style.width = pct + '%';
+      progressLabel.textContent = pct + '%';
+    }, TICK);
+
+    // After 3 minutes, show error
+    errorTimeout = setTimeout(() => {
+      clearInterval(progressInterval);
+      showError();
+    }, LOAD_DURATION);
+  }
+
+  function showError() {
+    stateLoading.classList.remove('active');
+    const err = errors[attemptCount % errors.length];
+    errorTitle.textContent = err.title;
+    errorCode.textContent  = err.code;
+    errorMsg.textContent   = err.msg;
+    stateError.classList.add('active');
+  }
+
+  function retryInvite() {
+    attemptCount++;
+    clearInterval(progressInterval);
+    clearTimeout(errorTimeout);
+    showLoading();
+  }
+
+  // ── BOOT ──────────────────────────────────────────────────
+  showLoading();
+</script>
+</body>
+</html>
