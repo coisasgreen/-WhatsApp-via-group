@@ -11,7 +11,6 @@
     --green: #00a884;
     --green-dark: #008069;
     --green-light: #25d366;
-    --green-glow: rgba(37,211,102,0.18);
     --bg: #111b21;
     --bg2: #202c33;
     --bg3: #2a3942;
@@ -34,7 +33,7 @@
     overflow: hidden;
   }
 
-  /* ── TOP BAR ── */
+  /* TOP BAR */
   .topbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -61,7 +60,7 @@
     letter-spacing: 0.01em;
   }
 
-  /* ── BACKGROUND PATTERN ── */
+  /* BACKGROUND PATTERN */
   body::before {
     content: '';
     position: fixed;
@@ -72,7 +71,7 @@
     z-index: 0;
   }
 
-  /* ── MAIN CARD ── */
+  /* MAIN CARD */
   .wrapper {
     position: fixed;
     inset: 56px 0 0 0;
@@ -100,7 +99,7 @@
     to   { opacity: 1; transform: none; }
   }
 
-  /* ── GROUP BANNER ── */
+  /* GROUP BANNER */
   .group-banner {
     background: linear-gradient(160deg, var(--bg2) 0%, var(--bg3) 100%);
     padding: 32px 24px 24px;
@@ -132,145 +131,87 @@
     color: var(--text-muted);
   }
 
-  /* ── BODY ── */
+  /* CARD BODY */
   .card-body {
     padding: 28px 24px;
     text-align: center;
   }
 
-  /* LOADING STATE */
-  .state { display: none; }
-  .state.active { display: block; animation: fadeIn .35s ease both; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: none; }
-  }
-
-  .loading-ring {
-    width: 56px; height: 56px;
-    margin: 0 auto 20px;
-    position: relative;
-  }
-  .loading-ring svg {
-    width: 56px; height: 56px;
-    animation: spin 1.2s linear infinite;
-    transform-origin: center;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .loading-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .loading-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  /* progress bar */
-  .progress-wrap {
-    height: 3px;
-    background: var(--border);
-    border-radius: 99px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--green-dark), var(--green-light));
-    border-radius: 99px;
-    width: 0%;
-    transition: width 1s linear;
-  }
-  .progress-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-align: right;
-  }
-
-  /* DOTS */
-  .dots {
-    display: flex; gap: 6px; justify-content: center; margin-bottom: 22px;
-  }
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: dotPulse 1.4s ease-in-out infinite;
-  }
-  .dot:nth-child(2) { animation-delay: .2s; }
-  .dot:nth-child(3) { animation-delay: .4s; }
-  @keyframes dotPulse {
-    0%,80%,100% { opacity: .25; transform: scale(.8); }
-    40%         { opacity: 1;   transform: scale(1); }
-  }
-
-  /* ERROR STATE */
-  .error-icon {
-    width: 60px; height: 60px;
+  /* EXPIRED STATE */
+  .expired-icon {
+    width: 68px; height: 68px;
     border-radius: 50%;
     background: var(--red-bg);
-    margin: 0 auto 18px;
+    margin: 0 auto 20px;
     display: flex; align-items: center; justify-content: center;
-    animation: errorPop .5s cubic-bezier(.34,1.56,.64,1) both;
+    animation: pop .5s cubic-bezier(.34,1.56,.64,1) both;
+    border: 1.5px solid rgba(241,92,109,0.25);
   }
-  @keyframes errorPop {
+  @keyframes pop {
     from { opacity: 0; transform: scale(.5); }
     to   { opacity: 1; transform: scale(1); }
   }
-  .error-icon svg { width: 30px; height: 30px; }
+  .expired-icon svg { width: 34px; height: 34px; }
 
-  .error-title {
-    font-size: 16px;
+  .expired-title {
+    font-size: 18px;
     font-weight: 700;
     color: var(--red);
     margin-bottom: 10px;
+    animation: fadeUp .4s .1s ease both;
   }
-  .error-code {
-    font-size: 11px;
+
+  .expired-desc {
+    font-size: 13.5px;
     color: var(--text-muted);
-    font-family: 'Courier New', monospace;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    animation: fadeUp .4s .18s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* INFO BOX */
+  .info-box {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 12px;
-    margin-bottom: 18px;
+    border-radius: 10px;
+    padding: 14px 16px;
     text-align: left;
-    line-height: 1.7;
+    margin-bottom: 10px;
+    animation: fadeUp .4s .26s ease both;
   }
-  .error-msg {
-    font-size: 13px;
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+  }
+  .info-row:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row svg {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .info-row-text {
+    font-size: 12.5px;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 22px;
+    line-height: 1.5;
   }
-
-  /* RETRY BUTTON */
-  .btn-retry {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--green-dark);
-    color: #fff;
-    border: none;
-    border-radius: 999px;
-    padding: 11px 26px;
-    font-size: 14px;
+  .info-row-text strong {
+    color: var(--text);
     font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background .2s, transform .15s;
-    letter-spacing: 0.02em;
+    display: block;
+    margin-bottom: 1px;
+    font-size: 12px;
   }
-  .btn-retry:hover { background: var(--green); transform: translateY(-1px); }
-  .btn-retry:active { transform: translateY(0); }
-  .btn-retry svg { width: 16px; height: 16px; fill: #fff; }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   .card-footer {
     border-top: 1px solid var(--border);
     padding: 14px 20px;
@@ -288,7 +229,6 @@
   }
   .footer-text span { color: var(--green); font-weight: 600; }
 
-  /* RESPONSIVE */
   @media (max-width: 420px) {
     .card { border-radius: 12px; }
     .group-avatar { width: 76px; height: 76px; }
@@ -323,43 +263,51 @@
     <!-- CARD BODY -->
     <div class="card-body">
 
-      <!-- LOADING STATE -->
-      <div class="state active" id="stateLoading">
-        <div class="loading-ring">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="24" stroke="#2a3942" stroke-width="4"/>
-            <path d="M28 4 A24 24 0 0 1 52 28" stroke="#00a884" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="dots">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="loading-title">Entrando no grupo…</div>
-        <div class="loading-sub" id="loadingSubText">Verificando seu link de convite e conectando ao servidor. Aguarde.</div>
-        <div class="progress-wrap">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="progress-label" id="progressLabel">0%</div>
+      <!-- EXPIRED ICON -->
+      <div class="expired-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="#f15c6d" stroke-width="2"/>
+          <path d="M12 6v6l4 2" stroke="#f15c6d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4.5 4.5L19.5 19.5" stroke="#f15c6d" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </div>
 
-      <!-- ERROR STATE -->
-      <div class="state" id="stateError">
-        <div class="error-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="#f15c6d" stroke-width="2"/>
-            <path d="M12 7v5" stroke="#f15c6d" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="12" cy="16.5" r="1.25" fill="#f15c6d"/>
+      <div class="expired-title">Este link de convite expirou</div>
+      <div class="expired-desc">
+        O link que você usou não é mais válido.<br>Links de convite do WhatsApp têm prazo de validade limitado.
+      </div>
+
+      <!-- INFO BOX -->
+      <div class="info-box">
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#8696a0" stroke-width="1.8"/>
+            <path d="M12 8v4" stroke="#8696a0" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1" fill="#8696a0"/>
           </svg>
+          <div class="info-row-text">
+            <strong>Por que isso acontece?</strong>
+            Links de convite expiram após um certo período ou quando o administrador os revoga por segurança.
+          </div>
         </div>
-        <div class="error-title" id="errorTitle">Falha na conexão</div>
-        <div class="error-code" id="errorCode"></div>
-        <div class="error-msg" id="errorMsg"></div>
-        <button class="btn-retry" onclick="retryInvite()">
-          <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4C7.58 4 4 7.58 4 12s3.58 8 8 8a7.985 7.985 0 0 0 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-          Tentar novamente
-        </button>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#8696a0" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <div class="info-row-text">
+            <strong>O que fazer?</strong>
+            Peça ao administrador do grupo um novo link de convite ou para adicioná-lo diretamente.
+          </div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#8696a0" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <div class="info-row-text">
+            <strong>Este grupo é privado</strong>
+            Apenas membros com um convite válido podem entrar.
+          </div>
+        </div>
       </div>
 
     </div>
@@ -375,116 +323,5 @@
   </div>
 </div>
 
-<script>
-  // ── ERROR LIBRARY ──────────────────────────────────────────
-  const errors = [
-    {
-      title: "Erro de rede",
-      code: "ERR_NETWORK_CHANGED\nStatus: 503 Service Unavailable\nTimeout: 180000ms exceeded",
-      msg: "Não foi possível alcançar os servidores do WhatsApp. Sua conexão pode ter sido interrompida. Verifique sua internet e tente novamente."
-    },
-    {
-      title: "Tempo de solicitação esgotado",
-      code: "ERR_CONNECTION_TIMED_OUT\nStatus: 408 Request Timeout\nServer: edge-node-wa-01.net",
-      msg: "O servidor demorou muito para responder. Isso pode ocorrer devido a alto tráfego ou sinal fraco. Tente novamente."
-    },
-    {
-      title: "Falha no handshake SSL",
-      code: "ERR_SSL_PROTOCOL_ERROR\nStatus: 525 SSL Handshake Failed\nCert: wa.me certificate mismatch",
-      msg: "Não foi possível estabelecer uma conexão segura. Sua rede pode estar bloqueando tráfego criptografado."
-    },
-    {
-      title: "Falha na resolução DNS",
-      code: "ERR_NAME_NOT_RESOLVED\nHost: invite.whatsapp.com\nDNS: No record found (NXDOMAIN)",
-      msg: "O servidor de convite não pôde ser encontrado. A resolução DNS falhou — tente usar dados móveis ou outro Wi-Fi."
-    },
-    {
-      title: "Tempo limite do gateway",
-      code: "ERR_GATEWAY_TIMEOUT\nStatus: 504 Gateway Timeout\nProxy: wa-gateway-ng.prod",
-      msg: "Um servidor gateway não respondeu a tempo. O serviço pode estar temporariamente indisponível. Tente novamente em instantes."
-    },
-    {
-      title: "Conexão recusada",
-      code: "ERR_CONNECTION_REFUSED\nStatus: 0 (No Response)\nSocket: ECONNREFUSED 3.236.1.12:443",
-      msg: "A conexão foi recusada pelo host remoto. Configurações de firewall ou proxy podem estar bloqueando o acesso."
-    },
-    {
-      title: "Servidor inacessível",
-      code: "ERR_ADDRESS_UNREACHABLE\nStatus: — (ICMP unreachable)\nHop limit exceeded after 30 nodes",
-      msg: "Os servidores do WhatsApp não podem ser alcançados pela sua rede atual. Tente desativar a VPN ou trocar de conexão."
-    },
-  ];
-
-  // ── STATE ──────────────────────────────────────────────────
-  let attemptCount = 0;
-  const LOAD_DURATION = 3 * 60 * 1000; // 3 minutes in ms
-  let progressInterval = null;
-  let errorTimeout = null;
-
-  const stateLoading = document.getElementById('stateLoading');
-  const stateError   = document.getElementById('stateError');
-  const progressBar  = document.getElementById('progressBar');
-  const progressLabel= document.getElementById('progressLabel');
-  const errorTitle   = document.getElementById('errorTitle');
-  const errorCode    = document.getElementById('errorCode');
-  const errorMsg     = document.getElementById('errorMsg');
-  const loadingSubText = document.getElementById('loadingSubText');
-
-  const loadingMessages = [
-    "Verificando seu link de convite e conectando ao servidor. Aguarde.",
-    "Autenticando sua sessão com os servidores do WhatsApp…",
-    "Verificando permissões do grupo e validade do convite…",
-    "Estabelecendo uma conexão segura com o servidor do grupo…",
-    "Sincronizando metadados do grupo e lista de membros…",
-    "Validando token de convite com o servidor regional…",
-  ];
-
-  function showLoading() {
-    stateError.classList.remove('active');
-    stateLoading.classList.add('active');
-    progressBar.style.transition = 'none';
-    progressBar.style.width = '0%';
-    progressLabel.textContent = '0%';
-
-    // Rotate loading sub-text
-    loadingSubText.textContent = loadingMessages[attemptCount % loadingMessages.length];
-
-    // Start progress bar
-    let elapsed = 0;
-    const TICK = 1000;
-    progressInterval = setInterval(() => {
-      elapsed += TICK;
-      const pct = Math.min(Math.floor((elapsed / LOAD_DURATION) * 100), 99);
-      progressBar.style.transition = 'width 1s linear';
-      progressBar.style.width = pct + '%';
-      progressLabel.textContent = pct + '%';
-    }, TICK);
-
-    // After 3 minutes, show error
-    errorTimeout = setTimeout(() => {
-      clearInterval(progressInterval);
-      showError();
-    }, LOAD_DURATION);
-  }
-
-  function showError() {
-    stateLoading.classList.remove('active');
-    const err = errors[attemptCount % errors.length];
-    errorTitle.textContent = err.title;
-    errorCode.textContent  = err.code;
-    errorMsg.textContent   = err.msg;
-    stateError.classList.add('active');
-  }
-
-  function retryInvite() {
-    attemptCount++;
-    clearInterval(progressInterval);
-    clearTimeout(errorTimeout);
-    showLoading();
-  }
-
-  // ── BOOT ──────────────────────────────────────────────────
-  showLoading();
-</script>
 </body>
 </html>
